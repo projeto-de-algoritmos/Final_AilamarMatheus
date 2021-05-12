@@ -24,7 +24,7 @@ app.post('/', (req, res) => {
         const graph = new Graph();
 
         cities.forEach(city => {
-            graph.addNode(city[0], city[1], city[2]);
+            graph.addNode(city[0], city[1]);
         });
         routes.forEach(route => {
             graph.addEdge(route[0], route[1], route[2]);
