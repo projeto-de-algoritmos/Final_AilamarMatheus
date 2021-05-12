@@ -21,17 +21,20 @@ function LocationMarker() {
   )
 }
 
-
 function Mapa () {
+  const position = [-15.81796, -47.899999];
 	return (
 			<MapContainer
-				center={{ lat: -15.793749, lng: -47.940116 }}
-				zoom={13}
+        className='mapa'
+				center={position}
+				zoom={12}
 				scrollWheelZoom={false}>
 				<TileLayer
 					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
+        <Marker  position={position}>
+        </Marker>
     </MapContainer>
 	)
 }

@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import {
   BrowserRouter, Route, Switch
 } from 'react-router-dom';
-import Mapa from './components/Map'
-import './global.css'
+import Mapa from './components/Map';
+import './global.css';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter >
     <Switch>
-      <Route path="/"><Mapa/> </Route>
+      <Route path="/"><Mapa /> </Route>
     </Switch>
   </BrowserRouter>,
   document.getElementById('root'),
 );
-
