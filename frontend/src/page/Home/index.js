@@ -7,6 +7,8 @@ function Home () {
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [position, setPosition] = useState('');
+  const [distance, setDistance] = useState('0');
+  const [time, setTime] = useState('0');
 
   async function handlePath (e) {
     e.preventDefault();
@@ -19,7 +21,8 @@ function Home () {
     console.log(data);
     const response = await api.post('/', data);
     setPosition(response.data.coordinates);
-
+    setDistance(response.data.distance);
+    setTime(response.data.time);
   }
 
   function handleStartChange (e) {
@@ -114,6 +117,9 @@ function Home () {
       </label>
       <input type="submit" value="Pesquisar" />
       </form>
+
+      <p>Distancia total : {distance}Km</p>
+      <p>Dempo total : {time}min</p>
       <p>
         Direções:
       </p>

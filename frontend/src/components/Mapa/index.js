@@ -6,7 +6,7 @@ function Mapa (props) {
   const items = [];
 
   for (let i = 0, j = props.position.length; i < j; i++) {
-    items.push(<Marker position={props.position[i]}></Marker>)
+    items.push(<Marker key={i} position={props.position[i]}></Marker>)
   }
 
 	return (
