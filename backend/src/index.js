@@ -19,6 +19,7 @@ app.use((req, res, next) =>{
 app.post('/', (req, res) => {
     const {origem, destino} = req.body;
 
+    console.log(req.body);
     if(req.body) {
 
         const graph = new Graph();
