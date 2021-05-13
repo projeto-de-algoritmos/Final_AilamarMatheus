@@ -68,7 +68,7 @@ $ npm start
 
 ## Uso 
 
-Selecione uma cidade no primeiro bloco, uma cidade no segundo bloco e clique em pesquisar. O resultado vai a rota com a menot distância e tempo da origem até o destino.
+Selecione uma cidade no primeiro bloco, uma cidade no segundo bloco e clique em pesquisar. O resultado vai a rota com a menor distância e tempo da origem até o destino.
 
 ## Outros 
 
