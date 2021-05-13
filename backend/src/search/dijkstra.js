@@ -14,6 +14,9 @@ function Dequeue(queue) {
   return queue.shift(); 
 }
 
+
+// sintetiza os valores das distancias
+
 function pathFinder(distances, start, end) {
   let next = end;
   let path = []
@@ -43,6 +46,20 @@ function pathFinder(distances, start, end) {
   return path;
 }
 
+function addCoordinates(path) {
+  let obj = {};
+  obj = path; 
+  for(let i = 0, n = obj.length; i < n; i++){
+    for(let j = 0, m = cities.length; j < m; j++){
+      if(cities[j][0] === obj[i].city){
+        obj[i].coordinates = cities[j][1];
+        break;
+      }
+    }
+  }
+
+}
+
 Array.prototype.setDistance = function (edge) {
   this.map((x)=>{
     if(x._to === edge._to && x._weight._distance < 0 ){
@@ -54,26 +71,35 @@ Array.prototype.setDistance = function (edge) {
 
 function dijkstra(graph, start, end) {
   let distances = [];
+
+  // inicializa o vetor com os valores iniciais
   cities.forEach(city => {
     distances.push({_from : '', _to : city[0], _weight : {_distance : -1, _time : -1} });
   });
   let visitedCities = [];
 
+
+  // iteradores com os valores iniciais
   let actualWeight =  { _distance : 0, _time : 0 };
   let candidates = [];
   let actualCity = start;
-
+  // memorizador de inicio para inicio
   distances.setDistance({ _from : start, _to : start , _weight : actualWeight });
 
   let count = 0;
+
+  // enquanto nao encontrar a cidade final
   while(actualCity !== end) {
 
   // for(let count = 0; count < 9;){
 
+    // marca a cidade como visitada
     visitedCities.push(actualCity);
+
+    // busca a cidade no grafo
     let actualNode = graph._nodes.filter((x) => x._label === actualCity)[0]
     
-
+    // para cada visinho: calcula a distancia total e adiciona candidato
     actualNode._edges.forEach(edge => {
       if(!visitedCities.find((element) => element === edge._destination._label))
         {
@@ -87,6 +113,8 @@ function dijkstra(graph, start, end) {
 
     let short = Number.MAX_VALUE;
     let position = 0;
+
+    // se a distancia do candidato for menor do que a menor distancia atual, se torna a nova menor distancia
     for (let i = 0; i < candidates.length; i++) {
       let edge = candidates[i];
       if(edge._weight._distance < short)
@@ -107,14 +135,19 @@ function dijkstra(graph, start, end) {
     const candidate = Dequeue(candidates);
     
 
+    // va de atual para candidato
     distances.setDistance(candidate);
     actualCity = candidate._to;    
     actualWeight = candidate._weight;
 
-
   }
 
-  let path = pathFinder(distances, start, end)
+  
+
+  let path = pathFinder(distances, start, end);
+
+  addCoordinates(path);
+
 
   return path;
 

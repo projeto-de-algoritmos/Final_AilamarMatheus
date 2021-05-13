@@ -6,8 +6,8 @@ class Graph {
         this._nodes = [];
     }
 
-    addNode(label, latitude, longitude){
-        this._nodes.push(new Node({label, latitude, longitude}))
+    addNode(label, coordinates){
+        this._nodes.push(new Node({label, coordinates}))
     }
 
     addEdge(origin, destination, weight){

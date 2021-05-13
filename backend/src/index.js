@@ -32,8 +32,10 @@ app.post('/', (req, res) => {
 
         const path = dijkstra(graph, origem, destino);
         answerPath = [];
+        answerCoordinates = [];
         path.forEach((x) => {
             answerPath.push(x.city);
+            answerCoordinates.push(x.coordinates);
             x.weight._distance = Math.round(x.weight._distance * 10) / 10;
         });
         answerTime = path[path.length-1].weight._time;
@@ -41,7 +43,7 @@ app.post('/', (req, res) => {
 
         console.log(path);
 
-        return res.json({ path : answerPath, distance : answerDistance, time : answerTime });
+        return res.json({ path : answerPath, distance : answerDistance, time : answerTime, coordinates : answerCoordinates });
     
     } else {
         console.log("deu ruim");
